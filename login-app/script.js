@@ -1,7 +1,7 @@
 'use strict';
 
 // ── Config ────────────────────────────────────────────────────
-const CREDENTIALS = { username: 'OPAWALE', password: 'OPAWALE123' };
+const CREDENTIALS = { username: 'mylogin', password: 'login123' };
 
 // ── DOM ───────────────────────────────────────────────────────
 const form          = document.getElementById('form');
@@ -113,16 +113,17 @@ form.addEventListener('submit', (e) => {
 
   setLoading(true);
 
-  // Simulate network delay (remove if connecting to a real backend)
+  // Simulate network delay
   setTimeout(() => {
     const enteredUser = uInput.value.trim();
     const enteredPass = pInput.value;
 
+    // FIXED: Case-insensitive comparison
     if (
-      enteredUser.toUpperCase() === CREDENTIALS.username &&
+      enteredUser.toLowerCase() === CREDENTIALS.username.toLowerCase() &&
       enteredPass === CREDENTIALS.password
     ) {
-      successName.textContent = `Welcome back, ${enteredUser.toUpperCase()}!`;
+      successName.textContent = `Welcome back, ${enteredUser}!`;
       successScreen.hidden = false;
       document.body.style.overflow = 'hidden';
     } else {
